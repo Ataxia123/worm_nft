@@ -107,7 +107,7 @@ contract SnowballFight2021 is Ownable, ERC721Enumerable {
 		// 1. mint the new 0riginal
 		_safeMint(msg.sender, 0);
 		// 2. set ID to 273 to start where SnowballFight2021 left off
-		idTracker = 273;
+		idTracker = 0;
 	}
 
 	// internal mint called by: transferOverride
