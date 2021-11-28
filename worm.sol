@@ -20,16 +20,16 @@ from Ambition.wtf
 
 Presenting … … … … Edwone
 
-  Reincarnation of Edworm, with new magical abilities.
+  Reincarnation of SnowballFight2021, with new magical abilities.
 
 
 Introducing: the "yoink-chain" mechanic.
 
-should Edworm ever get stuck again,
+should SnowballFight2021 ever get stuck again,
   we can call the "yoink" function
     to free the NFT & bring it home.
 
-from there Edworm may continue the mission
+from there SnowballFight2021 may continue the mission
   to visit every wallet on the Ethereum blockchain.
 
 
@@ -55,7 +55,7 @@ This contract consists of these parts:
 
 */
 
-contract Edwone is Ownable, ERC721Enumerable {
+contract SnowballFight2021 is Ownable, ERC721Enumerable {
 	using Strings for uint256;
 
 	//
@@ -63,11 +63,11 @@ contract Edwone is Ownable, ERC721Enumerable {
 	//
 
 	// need to manually track IDs because we jump from 0 to 273
-	// in order to start off where Edworm got stuck
+	// in order to start off where SnowballFight2021 got stuck
 	uint idTracker;
 
-	// store the address of the old Edworm contract
-	address public edworm;
+	// store the address of the old SnowballFight2021 contract
+	address public SnowballFight2021;
 
 	// on-chain SVG & JSON data to store and assemble the NFT art
 	// this part is complicated, don't worry about it
@@ -88,10 +88,10 @@ contract Edwone is Ownable, ERC721Enumerable {
 	}
 
 	// called when the contract is deployed
-	constructor(address _edworm) ERC721('Edwone', 'WONE') {
-		// set the address of the old Edworm contract so that Edwone
-		// is aware of where it already went when it was Edworm
-		edworm = _edworm;
+	constructor(address _SnowballFight2021) ERC721('SnowballFight2021', 'WONE') {
+		// set the address of the old SnowballFight2021 contract so that Edwone
+		// is aware of where it already went when it was SnowballFight2021
+		SnowballFight2021 = _SnowballFight2021;
 	}
 
 	//
@@ -102,11 +102,11 @@ contract Edwone is Ownable, ERC721Enumerable {
 		// 0. prevent multiple calls, just in case
 		require(
 			_exists(0) == false,
-			'TOO LATE: The resurrection has already happened'
+			'TOO LATE: The ball was already thrown.'
 		);
 		// 1. mint the new 0riginal
 		_safeMint(msg.sender, 0);
-		// 2. set ID to 273 to start where Edworm left off
+		// 2. set ID to 273 to start where SnowballFight2021 left off
 		idTracker = 273;
 	}
 
@@ -194,13 +194,13 @@ contract Edwone is Ownable, ERC721Enumerable {
 		require(
 			// require that the token IS the 0riginal
 			tokenId == 0,
-			'TOO BAD: only the 0riginal can be transferred'
+			'TOO BAD: only the Snowball Owner can throw a snowball'
 		);
 
 		require(
 			// require that the owner was NOT previously an owner
 			isDisciple(to) == false,
-			'TOO BAD: you already had the 0riginal'
+			'TOO BAD: this address has already been hit'
 		);
 
 		require(
@@ -217,8 +217,8 @@ contract Edwone is Ownable, ERC721Enumerable {
 	// prettier-ignore
 	function isDisciple(address _address) public view returns (bool) {
 		return (
-			// if balanceOf Edworm is 1 the address had the old Worm
-			IERC721(edworm).balanceOf(_address) == 1
+			// if balanceOf SnowballFight2021 is 1 the address had the old Worm
+			IERC721(SnowballFight2021).balanceOf(_address) == 1
 			||
 			// if balanceOf Edwone is 1 the address had the new Worm
 			balanceOf(_address) == 1
